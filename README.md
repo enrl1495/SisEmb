@@ -19,7 +19,8 @@ Explicación.
 
    Para este paso es importante contar con una version antigua de Arduino IDE, luego, descomprimir el archivo .rar y en la ruta
    'C:\Users\*usuario*\Documents\Arduino\tools\ESP32FS\tool', pegar el archivo descomprimido. Para subir archivos se tiene que ejecutar el siguiente codigo:
-
+   
+   '''cpp
    #include "FS.h"
    #include "LittleFS.h"
 
@@ -43,13 +44,15 @@ Explicación.
    void loop() {
     // El loop está vacío
    }
+   '''
 
    Esto formatea la memoria al formato de LittleFS para poder subir archivos como si se tratara de explorador de windows.
 
    Luego, en la carpeta donde se está trabajando hay que crear un directorio llamado 'data' y poner dentro, los archivos a cargar. Y en la versión antigua de Arduino IDE aparece la siguiente opción:
 
-![ArduinoUpload](upload.png)
+   ![ArduinoUpload](upload.png)
 
+   Luego de subir los arhivos
 
 
 
