@@ -1,0 +1,202 @@
+/* Estilos para la barra superior */
+body {
+    margin: 0;
+    padding: 0;
+    font-family: Arial, sans-serif;
+    background-color: #ddffd8;
+}
+
+.header {
+    background-color: #64b5f6; /* Color de fondo de la barra */
+    padding: 10px 0; /* Espacio interno */
+}
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 10%; /* Ajustado para alineación centrada */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+/* Estilos para el título */
+.logo {
+    margin: 0;
+    font-size: 24px; /* Tamaño de fuente reducido */
+    font-weight: bold;
+    color: #00ffcc;
+    font-family: 'Roboto', sans-serif; /* Fuente moderna */
+    text-transform: uppercase; /* Texto en mayúsculas */
+    letter-spacing: 2px; /* Espaciado entre letras */
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.4);
+    background: linear-gradient(135deg, #00ffcc, #0033cc);
+    background-clip: text;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    text-align: center;
+}
+
+main {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh; /* Ajusta la altura del contenedor principal al 100% de la altura de la pantalla */
+    position: relative;
+    z-index: 1;
+}
+
+.mapa-mental {
+    max-width: 50%;
+    height: auto;
+    display: block;
+    /*margin: -60px auto;*/
+    position: absolute;
+    top: 140px;
+    right: 80px;
+    z-index: 1;
+    animation: shadow-pulse 3s infinite;
+}
+
+.temp {
+    position: absolute;
+    top: 60px;
+    left: 60px;
+}
+
+.Resultado {
+    position: absolute;
+    top: 92px;
+    left: 55px;
+    font-size: 14px;
+    font-weight: bold;
+    color: #ff5733;
+    font-family: 'Roboto', sans-serif;
+    z-index: 1;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5); /* Agrega una sombra al texto para resaltarlo */
+    background-color: rgba(197, 255, 214, 0.993); /* Agrega un fondo blanco semi-transparente para resaltar el texto */
+    padding: 5px 20px; /* Agrega un poco de espacio alrededor del texto para hacerlo más visible */
+    border-radius: 10px; /* Agrega bordes redondeados para suavizar el aspecto */
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+}
+
+.Resultado1 {
+    position: absolute;
+    top: 92px;
+    left: 195px;
+    font-size: 14px;
+    font-weight: bold;
+    color: #ff5733;
+    font-family: 'Roboto', sans-serif;
+    z-index: 1;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5); /* Agrega una sombra al texto para resaltarlo */
+    background-color: rgba(197, 255, 214, 0.993); /* Agrega un fondo blanco semi-transparente para resaltar el texto */
+    padding: 5px 20px; /* Agrega un poco de espacio alrededor del texto para hacerlo más visible */
+    border-radius: 10px; /* Agrega bordes redondeados para suavizar el aspecto */
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+}
+
+.hum {
+    position: absolute;
+    top: 60px;
+    right: 60px;
+}
+
+.LuzAccion{
+    position: absolute;
+    top: 150px;
+    right: 250px;
+}
+
+.hum_suelo{
+    position: absolute;
+    top: 150px;
+    right: 20px;
+}
+.Resultado2 {
+    position: absolute;
+    top: 180px;
+    right: 0px;
+    font-size: 12px;
+    font-weight: bold;
+    color: #ff5733;
+    font-family: 'Roboto', sans-serif;
+    z-index: 1;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5); /* Agrega una sombra al texto para resaltarlo */
+    background-color: rgba(197, 255, 214, 0.993); /* Agrega un fondo blanco semi-transparente para resaltar el texto */
+    padding: 5px 20px; /* Agrega un poco de espacio alrededor del texto para hacerlo más visible */
+    border-radius: 10px; /* Agrega bordes redondeados para suavizar el aspecto */
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+}
+
+
+.container1 {
+    /*background-color: white;*/
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    text-align: center;
+    position: absolute;
+    top: 300px;
+    right: 80px;
+    justify-content: center;
+    align-items: center;
+}
+
+label {
+    font-size: 12px; /* Tamaño de fuente reducido */
+    margin-bottom: 0px;
+    display: block;
+}
+
+select {
+    padding: 5px; /* Tamaño reducido */
+    font-size: 12px; /* Tamaño de fuente reducido */
+    margin-bottom: 10px;
+    width: 100%;
+    box-sizing: border-box;
+}
+
+button {
+    padding: 5px 10px; /* Tamaño reducido */
+    font-size: 12px; /* Tamaño de fuente reducido */
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+button:hover {
+    background-color: #45a049;
+}
+
+#result {
+    margin-top: 20px;
+    font-size: 12px; /* Tamaño de fuente reducido */
+}
+
+@media screen and (max-width: 768px) {
+    .header {
+        padding: 20px 10%; /* Ajustado para alineación centrada */
+    }
+
+    .container {
+        padding: 0 10%; /* Ajustado para alineación centrada */
+    }
+}
+
+@keyframes shadow-pulse {
+    0%, 100% {
+        filter: drop-shadow(0 0 0px rgba(0, 255, 255, 1));
+    }
+    25% {
+        filter: drop-shadow(0 0 50px rgba(0, 255, 255, 0.7));
+    }
+    50% {
+        filter: drop-shadow(0 0 100px rgba(0, 255, 255, 0.5));
+    }
+    75% {
+        filter: drop-shadow(0 0 50px rgba(0, 255, 255, 0.7));
+    }
+}

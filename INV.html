@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Invernadero Inteligente</title>
+  <!-- Enlaces a tus archivos de estilos CSS y scripts JS  -->
+  <link rel="stylesheet" href="Styles1-1.css">
+  <script src="script1.js" defer></script>
+  
+</head>
+<body>
+  <header>
+    <div class="container">
+      <h1 class="logo">AgroSmart</h1>
+    </div>
+  </header>
+  
+  
+
+  <main>
+    <div class="contenedor">
+      <img src="L0go-removebg-preview.png" alt="Mapa Mental" class="mapa-mental">
+      <!---<img id="temperatura" class="temp" width="48" height="48" src="https://img.icons8.com/doodle/48/apple-weather.png" alt="icono-clima" class="IconoClima"/>--->
+      <img id="temperatura" class="temp" width="48" height="48" src="weather.png" alt="icono-clima" class="IconoClima"onclick="SolicitarTemperatura()"/> 
+      <p id="response" class="Resultado"> </p>     
+      <!---<img class="hum" width="48" height="48" src="https://img.icons8.com/dusk/64/hygrometer.png" alt="hygrometer"/>--->
+      <img onclick="SolicitarHumedad()" id="hum_lec" class="hum" width="48" height="48" src="humedad.png" alt="hygrometer" />
+      <p id="humedad_lectura" class="Resultado1"> </p>
+      <img onclick="AccionLuz()" id="accion_luz" class="LuzAccion" width="48" height="48" src="luz.png" alt="luz" />
+      <img onclick="HumedadDeSuelo()" id="hum_suelo_lec" class="hum_suelo" width="48" height="48" src="humedad_suelo.png" alt="humedadSuelo" />
+      <p id="humedad_suelo_lectura" class="Resultado2"> </p>
+      <div class="container1">
+        <label for="temperature">Temperatura deseada:</label>
+        <select id="temperature">
+            <option value="17">17°C</option>
+            <option value="18">18°C</option>
+            <option value="19">19°C</option>
+            <option value="20">20°C</option>
+            <option value="21">21°C</option>
+            <option value="22">22°C</option>
+            <option value="23">23°C</option>
+        </select>
+        <button id="submit" onclick="enviarTemperatura()">Aplicar</button>
+        <p id="result"></p>
+      </div>
+    </div>
+    
+  </main>
+</body>
+</html>
