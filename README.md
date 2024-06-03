@@ -48,7 +48,7 @@ Explicación.
 
    Luego, en la carpeta donde se está trabajando hay que crear un directorio llamado 'data' y poner dentro, los archivos a cargar. Y en la versión antigua de Arduino IDE aparece la siguiente opción:
 
-![ArduinoUpload](SisEmb/upload.png)
+![ArduinoUpload](upload.png)
 
 
 
