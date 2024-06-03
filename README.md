@@ -112,6 +112,8 @@ void loop() {
   }
 }
 
+![Interfaz](interfaz.png)
+
 
 
 
