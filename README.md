@@ -2,12 +2,11 @@ La idea es hacer el ESP32 un servidor cargando una pagina web que se pueda comun
 
 Para lograrlo, se tienen los siguientes puntos clave:
 
-1. Crear un sistema de archivos en el ESP32
-2. Subir una carpeta con los archivos de la pagina web.
-3. Hacer que el ESP32 sea un punto de acceso.
-4. Hacer que el ESP32 sea un servidor web.
-5. Usar wbsockets para la intercomunicacion.
-6. Acceder a la página y empezar a controlar el invernadero.
+1. Crear un sistema de archivos en el ESP33.
+2. Hacer que el ESP32 sea un punto de acceso.
+3. Hacer que el ESP32 sea un servidor web.
+4. Usar websockets para la intercomunicacion.
+5. Acceder a la página y empezar a controlar el invernadero.
 
 Explicación.
 
@@ -19,32 +18,31 @@ Explicación.
 
    Para este paso es importante contar con una version antigua de Arduino IDE, luego, descomprimir el archivo .rar y en la ruta
    'C:\Users\*usuario*\Documents\Arduino\tools\ESP32FS\tool', pegar el archivo descomprimido. Para subir archivos se tiene que ejecutar el siguiente codigo:
-   
-   '''cpp
-   #include "FS.h"
-   #include "LittleFS.h"
+'''cpp
+#include "FS.h"
+#include "LittleFS.h"
 
-   void setup() {
-     Serial.begin(115200);
+void setup() {
+   Serial.begin(115200);
   
-     if (!LittleFS.begin()) {
+   if (!LittleFS.begin()) {
        Serial.println("No se pudo montar LittleFS");
        return;
+}
+  
+   Serial.println("Formateando LittleFS...");
+  
+   if (LittleFS.format()) {
+      Serial.println("LittleFS formateado con éxito");
+   } else {
+      Serial.println("Error al formatear LittleFS");
     }
+}
   
-     Serial.println("Formateando LittleFS...");
-  
-     if (LittleFS.format()) {
-       Serial.println("LittleFS formateado con éxito");
-    } else {
-       Serial.println("Error al formatear LittleFS");
-    }
-   }
-  
-   void loop() {
-    // El loop está vacío
-   }
-   '''
+void loop() {
+   // El loop está vacío
+}
+'''
 
    Esto formatea la memoria al formato de LittleFS para poder subir archivos como si se tratara de explorador de windows.
 
@@ -52,8 +50,67 @@ Explicación.
 
    ![ArduinoUpload](upload.png)
 
-   Luego de subir los arhivos
+   Luego de subir los arhivos, hay que ingresar el codigo que carga los archivos para poder visualizarlos en forma
+   de pagina web con el siguiente codigo:
 
+   File file = LittleFS.open("/INV.html", "r");
+      if (file) {
+        server.streamFile(file, "text/html");
+        file.close();
+
+2.PUNTO DE ACCESO
+   El punto de acceso se crea de la siguiete forma:
+   
+   const char* ssid = "AgroSmart";
+   const char* password = "12345678";
+   WiFi.softAP(ssid, password);
+   
+3. Hacer servidor web el ESP32.
+
+      AsyncWebServer server(80);
+   server.on("/", HTTP_GET, [](AsyncWebServerRequest *request) {
+    request->send(LittleFS, "/INV.html", "text/html");
+  });
+
+  server.serveStatic("/", LittleFS, "/");
+
+  // Manejo de rutas no encontradas
+  server.onNotFound([](AsyncWebServerRequest *request) {
+    if (request->url() == "/") {
+      // Servir un archivo específico si la ruta es "/"
+      AsyncWebServerResponse *response = request->beginResponse(LittleFS, "/INV.html", "text/html");
+      if (!response) {
+        request->send(404, "text/plain", "Error 404: Archivo no encontrado");
+      } else {
+        request->send(response);
+      }
+    } else {
+      // Si el archivo no se encuentra, enviar una respuesta de error 404
+      request->send(404, "text/plain", "Error 404: Archivo no encontrado");
+    }
+  });
+  server.begin();
+
+4. Usar webSockets para la comunicacion.
+
+   WebSocketsServer wsGetTemp(83);
+   wsGetTemp.onEvent(onWebSocketEventGetTemp);
+   wsGetTemp.begin();
+   void onWebSocketEventGetTemp(uint8_t num, WStype_t type, uint8_t *payload, size_t length) 
+{
+  if (type == WStype_CONNECTED) {
+    // Cliente conectado, no hacer nada especial
+  } else if (type == WStype_DISCONNECTED) {
+    // Cliente desconectado, no hacer nada especial
+  } else if (type == WStype_TEXT) {
+    // Cliente envió un mensaje de texto, verificamos si es para solicitar la temperatura
+    String message = String((char*)payload).substring(0, length);
+    float temp = message.toFloat();
+    set_temp = temp;
+    sentinela_get_temp = true;
+    wsGetTemp.broadcastTXT("Ajustando temperatura a: " + String(set_temp) + "°C");
+  }
+}
 
 
 
